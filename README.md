@@ -10,3 +10,4 @@ I have to try it!
 * https://github.com/purcell/emacs.d
 * http://company-mode.github.io/
 * https://github.com/dgutov/robe
+* http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/121614
