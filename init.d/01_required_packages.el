@@ -1,4 +1,4 @@
-(setq required-packages 
+(setq packages
       (list
        'magit
        'ag
@@ -9,4 +9,4 @@
        'enh-ruby-mode
        'rubocop))
 
-(check-packages required-packages)
+(check-packages packages)
