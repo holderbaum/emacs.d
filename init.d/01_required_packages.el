@@ -4,6 +4,7 @@
        'ag
        'auto-complete
        'color-theme-solarized
-       'enh-ruby-mode))
+       'enh-ruby-mode
+       'rubocop))
 
 (check-packages required-packages)
