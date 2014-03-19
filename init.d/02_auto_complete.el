@@ -8,3 +8,4 @@
 
 (add-to-list 'ac-modes 'enh-ruby-mode)
 (add-to-list 'ac-modes 'web-mode)
+(add-to-list 'ac-modes 'git-commit-mode)
