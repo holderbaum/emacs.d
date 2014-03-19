@@ -7,3 +7,9 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
  
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
+
+(require 'smartparens-ruby)
+
+(sp-with-modes '(rhtml-mode)
+  (sp-local-pair "<" ">")
+  (sp-local-pair "<%" "%>"))
