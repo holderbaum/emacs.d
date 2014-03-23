@@ -7,6 +7,7 @@
        'flycheck
        'flx-ido
        'fill-column-indicator
+       'evil-numbers
        'color-theme-solarized
        'enh-ruby-mode
        'rubocop))
