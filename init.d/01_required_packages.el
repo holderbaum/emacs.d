@@ -5,6 +5,7 @@
        'auto-complete
        'f
        'flycheck
+       'flx-ido
        'color-theme-solarized
        'enh-ruby-mode
        'rubocop))
