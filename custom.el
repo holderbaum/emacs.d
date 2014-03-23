@@ -5,7 +5,9 @@
  ;; If there is more than one, they won't work right.
  '(ido-enable-flex-matching t)
  '(ido-mode (quote both) nil (ido))
+ '(inhibit-startup-screen t)
  '(scroll-bar-mode nil)
+ '(show-paren-mode t)
  '(size-indication-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
