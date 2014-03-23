@@ -7,6 +7,7 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
  
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
+(add-hook 'enh-ruby-mode-hook 'whitespace-mode)
 
 (require 'smartparens-ruby)
 
