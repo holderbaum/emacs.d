@@ -20,6 +20,35 @@
 	  (lambda ()
 	    (add-to-list 'compilation-error-regexp-alist
 			 '("\[\\(.*?\\):\\([0-9]+\\)\]:$" 1 2))))
+(add-hook 'enh-ruby-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (concat "bundle exec ruby -Ilib:test:spec " buffer-file-name))))
+
+(add-hook 'enh-ruby-mode-hook
+	  (lambda ()
+	    (set-ruby-default-directory)))
+
+(defun set-ruby-default-directory ()
+  (setq default-directory
+	(file-name-directory
+	 (get-nearest-file '("Rakefile" "Gemfile")))))
+
+(defun get-nearest-file (compilation-filenames)
+  "Search for the compilation file traversing up the directory tree."
+  (let ((dir default-directory)
+	(parent-dir (file-name-directory (directory-file-name default-directory)))
+	(nearest-compilation-file 'nil))
+    (while (and (not (string= dir parent-dir))
+		(not nearest-compilation-file))
+      (dolist (filename compilation-filenames)
+	(setq file-path (concat dir filename))
+	(when (file-readable-p file-path)
+	  (setq nearest-compilation-file file-path)))
+      (setq dir parent-dir
+	    parent-dir (file-name-directory (directory-file-name parent-dir))))
+    nearest-compilation-file))
+
 (require 'smartparens-ruby)
 
 (sp-with-modes '(rhtml-mode)
