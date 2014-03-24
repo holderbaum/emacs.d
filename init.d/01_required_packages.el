@@ -4,6 +4,7 @@
        'ag
        'auto-complete
        'f
+       'mmm-mode
        'markdown-mode
        'flycheck
        'flx-ido
