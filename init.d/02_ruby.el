@@ -9,6 +9,10 @@
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
 (add-hook 'enh-ruby-mode-hook 'whitespace-mode)
 
+(add-hook 'enh-ruby-mode-hook
+	  (lambda () (rvm-activate-corresponding-ruby)))
+
+
 (require 'smartparens-ruby)
 
 (sp-with-modes '(rhtml-mode)
