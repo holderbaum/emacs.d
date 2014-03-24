@@ -4,6 +4,7 @@
        'ag
        'auto-complete
        'f
+       'undo-tree
        'mmm-mode
        'markdown-mode
        'flycheck
