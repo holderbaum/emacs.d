@@ -5,6 +5,7 @@
        'auto-complete
        'f
        'undo-tree
+       'smartparens
        'mmm-mode
        'markdown-mode
        'flycheck
