@@ -5,6 +5,7 @@
 
 (setq c-default-style "linux")
 
+(global-set-key [(control c) (C)] 'compile)
 (global-set-key [(control c) (c)] 'compile-again)
 (setq compilation-last-buffer nil)
 (defun compile-again (pfx)
