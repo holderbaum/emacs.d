@@ -4,6 +4,7 @@
        'ag
        'auto-complete
        'f
+       'markdown-mode
        'flycheck
        'flx-ido
        'fill-column-indicator
