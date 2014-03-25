@@ -13,3 +13,9 @@
 (global-set-key [f6] 'cycle-ispell-languages)
 (global-set-key [f7] 'flyspell-buffer)
 (global-set-key [f8] 'flyspell-goto-next-error)
+
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"
+			  "--run-together"
+			  "--run-together-limit=5"
+			  "--run-together-min=2"))
