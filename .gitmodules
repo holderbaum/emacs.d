@@ -1,3 +1,6 @@
 [submodule "vendor/helm"]
 	path = vendor/helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule "vendor/projectile"]
+	path = vendor/projectile
+	url = https://github.com/bbatsov/projectile.git
