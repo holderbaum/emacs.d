@@ -10,7 +10,10 @@
  
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
 (add-hook 'enh-ruby-mode-hook 'whitespace-mode)
+(add-hook 'enh-ruby-mode-hook 'robe-mode)
 (add-hook 'enh-ruby-mode-hook (lambda () (interactive) (fci-mode)))
+
+(push 'company-robe company-backends)
 
 (add-hook 'enh-ruby-mode-hook
 	  (lambda () (rvm-activate-corresponding-ruby)))

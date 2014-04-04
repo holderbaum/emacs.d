@@ -2,7 +2,7 @@
       (list
        'magit
        'ag
-       'auto-complete
+       'company
        'f
        'undo-tree
        'smartparens
@@ -16,6 +16,7 @@
        'enh-ruby-mode
        'rvm
        'inf-ruby
+       'robe
        'rubocop))
 
 (check-packages packages)
