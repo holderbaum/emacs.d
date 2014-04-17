@@ -1,1 +1,1 @@
-(global-set-key (kbd "C-c RET") 'helm-projectile)
+(global-set-key (kbd "C-x SPC") 'helm-projectile)
