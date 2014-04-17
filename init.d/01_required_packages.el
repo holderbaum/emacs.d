@@ -4,6 +4,7 @@
        'ag
        'company
        'f
+       'helm-projectile
        'undo-tree
        'smartparens
        'mmm-mode
