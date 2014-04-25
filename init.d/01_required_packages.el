@@ -19,6 +19,7 @@
        'inf-ruby
        'robe
        'rubocop
-       'auctex))
+       'auctex
+       'puppet-mode))
 
 (check-packages packages)
