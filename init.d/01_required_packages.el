@@ -18,6 +18,7 @@
        'rvm
        'inf-ruby
        'robe
-       'rubocop))
+       'rubocop
+       'auctex))
 
 (check-packages packages)
