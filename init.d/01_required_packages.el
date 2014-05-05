@@ -20,6 +20,8 @@
        'robe
        'rubocop
        'auctex
-       'puppet-mode))
+       'puppet-mode
+       'haml-mode
+       'js3-mode))
 
 (check-packages packages)
