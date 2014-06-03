@@ -2,6 +2,7 @@
       (list
        'magit
        'ag
+       'wgrep-ag
        'company
        'f
        'helm-projectile
