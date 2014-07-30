@@ -15,25 +15,22 @@
 
 (push 'company-robe company-backends)
 
-(add-hook 'enh-ruby-mode-hook
-	  (lambda () (rvm-activate-corresponding-ruby)))
 
 (add-hook 'enh-ruby-mode-hook
 	  (lambda ()
+	    (rvm-activate-corresponding-ruby)
+
+            (set (make-local-variable 'compile-command)
+                 (concat "bundle exec ruby -Ilib:test:spec " buffer-file-name))
+
 	    (setq-default compilation-error-regexp-alist
 			  '(
 			    ("\\[\\(.*\\):\\([0-9]+\\)\\]:$" 1 2)
 			    ("^ *\\([[+]\\)?\\([^:]+\\):\\([0-9]+\\):in" 2 3)
-			    ("^.* at \\([^:]*\\):\\([0-9]+\\)$" 1 2)))))
+			    ("^.* at \\([^:]*\\):\\([0-9]+\\)$" 1 2)))
 
-(add-hook 'enh-ruby-mode-hook
-          (lambda ()
-            (set (make-local-variable 'compile-command)
-                 (concat "bundle exec ruby -Ilib:test:spec " buffer-file-name))))
-
-(add-hook 'enh-ruby-mode-hook
-	  (lambda ()
 	    (set-ruby-default-directory)))
+
 
 (defun set-ruby-default-directory ()
   (setq default-directory
