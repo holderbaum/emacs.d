@@ -22,7 +22,13 @@
 (add-hook 'enh-ruby-mode-hook
 	  (lambda ()
 	    (add-to-list 'compilation-error-regexp-alist
-			 '("\[\\(.*?\\):\\([0-9]+\\)\]:$" 1 2))))
+			 ("test[a-zA-Z0-9_]*([A-Z][a-zA-Z0-9_]*) \\[\\(.*\\):\\([0-9]+\\)\\]:" 1 2))))
+
+(add-hook 'enh-ruby-mode-hook
+	  (lambda ()
+	    (add-to-list 'compilation-error-regexp-alist
+			 ("\\(.*?\\)\\([0-9A-Za-z_./\:-]+\\.rb\\):\\([0-9]+\\)" 2 3))))
+
 (add-hook 'enh-ruby-mode-hook
           (lambda ()
             (set (make-local-variable 'compile-command)
