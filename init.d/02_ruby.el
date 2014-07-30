@@ -18,16 +18,13 @@
 (add-hook 'enh-ruby-mode-hook
 	  (lambda () (rvm-activate-corresponding-ruby)))
 
-
 (add-hook 'enh-ruby-mode-hook
 	  (lambda ()
-	    (add-to-list 'compilation-error-regexp-alist
-			 ("test[a-zA-Z0-9_]*([A-Z][a-zA-Z0-9_]*) \\[\\(.*\\):\\([0-9]+\\)\\]:" 1 2))))
-
-(add-hook 'enh-ruby-mode-hook
-	  (lambda ()
-	    (add-to-list 'compilation-error-regexp-alist
-			 ("\\(.*?\\)\\([0-9A-Za-z_./\:-]+\\.rb\\):\\([0-9]+\\)" 2 3))))
+	    (setq-default compilation-error-regexp-alist
+			  '(
+			    ("\\[\\(.*\\):\\([0-9]+\\)\\]:$" 1 2)
+			    ("^ *\\([[+]\\)?\\([^:]+\\):\\([0-9]+\\):in" 2 3)
+			    ("^.* at \\([^:]*\\):\\([0-9]+\\)$" 1 2)))))
 
 (add-hook 'enh-ruby-mode-hook
           (lambda ()
