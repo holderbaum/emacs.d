@@ -4,6 +4,7 @@
        'ag
        'wgrep-ag
        'company
+       'company-inf-ruby
        'f
        'helm-projectile
        'undo-tree
