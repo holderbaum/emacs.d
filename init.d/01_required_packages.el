@@ -24,6 +24,9 @@
        'auctex
        'puppet-mode
        'haml-mode
-       'js3-mode))
+       'js3-mode
+       'json-mode
+       'json-reformat
+       'json-snatcher))
 
 (check-packages packages)
