@@ -24,6 +24,7 @@
        'auctex
        'puppet-mode
        'haml-mode
+       'sass-mode
        'js3-mode
        'json-mode
        'json-reformat
