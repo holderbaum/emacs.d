@@ -9,6 +9,7 @@
 (require 'compile)
  
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
+(add-hook 'enh-ruby-mode-hook 'flycheck-mode)
 (add-hook 'enh-ruby-mode-hook 'whitespace-mode)
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
 (add-hook 'enh-ruby-mode-hook (lambda () (interactive) (fci-mode)))
