@@ -21,6 +21,28 @@ to your =~/.emacs.d/init.el= file:
 (org-babel-load-file "emacs-init.org"
 #+end_src
 
+** Required Packages
+
+The packages of this installation
+will be installed from the famous
+[[http://melpa.org/][MELPA]] Package Repository.
+
+To install packages from there,
+the repositories URL
+has to be configured:
+
+#+name: MELPA configuration
+#+begin_src emacs-lisp
+(require 'package)
+(setq package-user-dir "~/.emacs.d/elpa/")
+
+(add-to-list 'package-archives
+             '("melpa" .
+               "http://melpa.milkbox.net/packages/"))
+
+(package-initialize)
+#+end_src
+
 ** Generic GUI settings
 
 The default Emacs GUI
