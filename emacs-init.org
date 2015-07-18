@@ -2,6 +2,25 @@
 
 * Emacs Configuration
 
+This is my first attempt for actual [[https://en.wikipedia.org/wiki/Literate_programming][Literate Programming]].
+The following org file (=~/.emacs.d/emacs-init.org=)
+contains all the necessary configuration elisp code
+to setup Emacs to my convenience.
+
+To actually load it,
+add the following lines
+to your =~/.emacs.d/init.el= file:
+
+#+name: init.el content to load the literate configuration
+#+begin_src emacs-lisp :tangle no
+;; Require org mode
+(require 'org-install)
+(require 'ob-tangle)
+
+;; Load the custom configuration file
+(org-babel-load-file "emacs-init.org"
+#+end_src
+
 #+begin_src emacs-lisp
 (load-theme 'wombat)
 #+end_src
