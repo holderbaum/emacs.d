@@ -21,6 +21,26 @@ to your =~/.emacs.d/init.el= file:
 (org-babel-load-file "emacs-init.org"
 #+end_src
 
+** Generic GUI settings
+
+The default Emacs GUI
+is rather unappealing to the modern eye.
+And since the editor
+is focused on keyboard shortcuts
+a sophisticated GUI interface is not needed
+
+#+begin_src emacs-lisp
+;; Turn off mouse interface early in startup to avoid momentary display
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; No splash screen please... jeez
+n(setq inhibit-startup-screen t)
+#+end_src
+
+
+
 #+begin_src emacs-lisp
 (load-theme 'wombat)
 #+end_src
