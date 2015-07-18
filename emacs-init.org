@@ -60,14 +60,24 @@ by this configuration on emacs boot:
 | theme    | solarized-theme | A very pleasing theme, gently to the stressed eye |
 
 #+begin_src emacs-lisp :var package-entries=packages
+(defun jakob-get-package-name (package-entry)
+  (intern (cadr package-entry)))
+
+(defun jakob-package-is-installed (package)
+  (package-installed-p package))
+
+(defun jakob-install-missing-package (package)
+  (package-refresh-contents)
+  (package-install package))
+
 (defun jakob-install-missing-packages ()
   "Install all configured packages."
   (interactive)
   (mapc #'(lambda (package-entry)
-            (let ((package (intern (cadr package-entry))))
-            (unless (package-installed-p package)
-              (package-refresh-contents)
-              (package-install package))))
+            (let 
+              ((package (jakob-get-package-name package-entry)))
+              (unless (jakob-package-is-installed package)
+                (jakob-install-missing-package package))))
         (cddr package-entries)))
 
 (jakob-install-missing-packages)
