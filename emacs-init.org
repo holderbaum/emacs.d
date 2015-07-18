@@ -85,7 +85,7 @@ a sophisticated GUI interface is not needed
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; No splash screen please... jeez
-n(setq inhibit-startup-screen t)
+(setq inhibit-startup-screen t)
 #+end_src
 
 
