@@ -43,6 +43,33 @@ has to be configured:
 (package-initialize)
 #+end_src
 
+The following table
+contains a list of all packages
+that will be automatically installed
+by this configuration on emacs boot:
+
+#+name: packages
+| Category | Package         | Description                                       |
+|----------+-----------------+---------------------------------------------------|
+| util     | magit           | Exceptional git integration                       |
+| util     | undo-tree       | Better undo visualization and handling            |
+| util     | helm            | Exceptional completion system                     |
+| util     | helm-projectile | helm integration with projectile                  |
+| theme    | solarized-theme | A very pleasing theme, gently to the stressed eye |
+
+#+begin_src emacs-lisp :var package-entries=packages
+(defun jakob-install-missing-packages ()
+  "Install all configured packages."
+  (interactive)
+  (mapc #'(lambda (package-entry)
+            (let ((package (intern (cadr package-entry))))
+            (unless (package-installed-p package)
+              (package-refresh-contents)
+              (package-install package))))
+        (cddr package-entries)))
+
+(jakob-install-missing-packages)
+#+end_src
 ** Generic GUI settings
 
 The default Emacs GUI
