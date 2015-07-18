@@ -1,0 +1,8 @@
+#+PROPERTY: header-args :tangle yes :exports code
+
+* Emacs Configuration
+
+#+begin_src emacs-lisp
+(load-theme 'wombat)
+#+end_src
+
