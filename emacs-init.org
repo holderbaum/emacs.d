@@ -90,6 +90,7 @@ And since the editor
 is focused on keyboard shortcuts
 a sophisticated GUI interface is not needed
 
+#+name: disable most of the gui
 #+begin_src emacs-lisp
 ;; Turn off mouse interface early in startup to avoid momentary display
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
