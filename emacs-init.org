@@ -158,6 +158,5 @@ a sophisticated GUI interface is not needed
 
 
 #+begin_src emacs-lisp
-(load-theme 'wombat)
 #+end_src
 
