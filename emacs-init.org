@@ -23,6 +23,19 @@ to your =~/.emacs.d/init.el= file:
 (org-babel-load-file "emacs-init.org"
 #+end_src
 
+** Custom File
+
+Emacs stores some custom settings
+by default in the init file.
+We wan't to change this
+to a separate file: 
+
+#+name: specify different custom file
+#+begin_src emacs-lisp :tangle no
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+#+end_src
+
 ** Required Packages
 
 The packages of this installation
