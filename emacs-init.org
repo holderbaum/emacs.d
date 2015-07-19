@@ -82,6 +82,7 @@ by this configuration on emacs boot:
   (package-installed-p package))
 
 (defun jakob-install-missing-package (package)
+  "Refresh index and install given package"
   (package-refresh-contents)
   (package-install package))
 
