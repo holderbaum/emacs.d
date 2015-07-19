@@ -191,7 +191,22 @@ should be used:
        (load-theme 'darcula t))
 #+end_src
 
+* Org Mode
 
+Org mode is not only used
+to build this specific file.
+I also use it
+for note taking
+and TODO management
+or small documents.
+
+It should treat source blocks
+with the actual major mode:
+
+#+name: Display org-mode source blocks naturally
 #+begin_src emacs-lisp
+(setq org-src-fontify-natively t)
+(setq org-edit-src-content-indentation 0)
+(setq org-src-tab-acts-natively t)
 #+end_src
 
