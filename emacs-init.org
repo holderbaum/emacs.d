@@ -156,9 +156,9 @@ The default Emacs GUI
 is rather unappealing to the modern eye.
 And since the editor
 is focused on keyboard shortcuts
-a sophisticated GUI interface is not needed
+a sophisticated GUI interface is not needed:
 
-#+name: disable most of the gui
+#+name: Disable most of the gui elements
 #+begin_src emacs-lisp
 ;; Turn off mouse interface early in startup to avoid momentary display
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -167,12 +167,22 @@ a sophisticated GUI interface is not needed
 
 ;; No splash screen please... jeez
 (setq inhibit-startup-screen t)
+#+end_src
 
+A larger monospace font
+is especially nice
+for longer coding sessions:
+
+#+name: Set a readable default font
+#+begin_src emacs-lisp
 ;; Set default font
 (set-default-font "DejaVu Sans Mono")
 (set-face-attribute 'default nil :height 120)
 #+end_src
 
+In addition to this
+the following default theme
+should be used:
 
 #+name: Load favourite theme
 #+begin_src emacs-lisp
