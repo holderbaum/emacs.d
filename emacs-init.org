@@ -181,6 +181,10 @@ a sophisticated GUI interface is not needed
 
 ;; No splash screen please... jeez
 (setq inhibit-startup-screen t)
+
+;; Set default font
+(set-default-font "DejaVu Sans Mono")
+(set-face-attribute 'default nil :height 120)
 #+end_src
 
 
