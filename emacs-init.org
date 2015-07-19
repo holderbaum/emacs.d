@@ -31,8 +31,11 @@ We wan't to change this
 so that the custom settings
 are stored inside this file
 
-#+name: specify different custom file
+#+name: Custom variables configuration
 #+begin_src emacs-lisp :tangle no
+(setq custom-file "~/.emacs.d/emacs-init.org")
+(load custom-file)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
