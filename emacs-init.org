@@ -1,4 +1,4 @@
-#+STARTUP: showall 
+#+STARTUP: showall
 #+STARTUP: hidestars
 #+PROPERTY: header-args :tangle yes :exports code
 
