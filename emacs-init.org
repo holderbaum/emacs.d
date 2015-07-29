@@ -212,6 +212,46 @@ with the actual major mode:
 (setq org-src-tab-acts-natively t)
 #+end_src
 
+* Text Mode Settings
+
+** Fix for DOuble CApitalization
+
+Code segment is inspired
+by this [[http://endlessparentheses.com/fixing-double-capitals-as-you-type.html][blog post]].
+
+#+name: Function and a minor morde to enable double capitalization errors
+#+begin_src emacs-lisp
+(defun dcaps-to-scaps ()
+  "Convert word in DOuble CApitals to Single Capitals."
+  (interactive)
+  (and (= ?w (char-syntax (char-before)))
+       (save-excursion
+         (and (if (called-interactively-p)
+                  (skip-syntax-backward "w")
+                (= -3 (skip-syntax-backward "w")))
+              (let (case-fold-search)
+                (looking-at "\\b[[:upper:]]\\{2\\}[[:lower:]]"))
+              (capitalize-word 1)))))
+
+(define-minor-mode dubcaps-mode
+  "Toggle `dubcaps-mode'. Triggers dcaps-to-scaps."
+  :init-value nil
+  :lighter (" DC")
+  (if dubcaps-mode
+      (add-hook 'post-self-insert-hook #'dcaps-to-scaps nil 'local)
+    (remove-hook 'post-self-insert-hook #'dcaps-to-scaps 'local)))
+#+end_src
+
+The mode shall be enabled
+for text mode
+so that it is availabe
+to every text related buffer
+
+#+name: Enable double capitalization mode
+#+begin_src emacs-lisp
+(add-hook 'text-mode-hook #'dubcaps-mode)
+#+end_src
+
 * Helm Settings
 
 Helm is a very powerful and versatile environment
