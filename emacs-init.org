@@ -212,3 +212,13 @@ with the actual major mode:
 (setq org-src-tab-acts-natively t)
 #+end_src
 
+* Helm Settings
+
+Helm is a very powerful and versatile environment
+which enables nice completions everywhere.
+
+#+name: test
+#+begin_src emacs-lisp
+(after "helm-projectile-autoloads"
+  (global-set-key (kbd "C-x SPC") 'helm-projectile))
+#+end_src
