@@ -1,5 +1,6 @@
 #+STARTUP: showall
 #+STARTUP: hidestars
+#+STARTUP: indent
 #+PROPERTY: header-args :tangle yes :exports code
 
 * Emacs Configuration
