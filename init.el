@@ -3,4 +3,4 @@
 (require 'ob-tangle)
 
 ;; Load the custom configuration file
-(org-babel-load-file "emacs-init.org")
+(org-babel-load-file (expand-file-name "emacs-init.org" user-emacs-directory))
