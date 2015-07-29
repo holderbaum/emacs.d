@@ -193,7 +193,7 @@ should be used:
   (load-theme 'darcula t))
 #+end_src
 
-* Org Mode
+* Org Mode Settings
 
 Org mode is not only used
 to build this specific file.
