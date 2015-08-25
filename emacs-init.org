@@ -75,6 +75,7 @@ by this configuration on emacs boot:
 | util  | helm-projectile | helm integration with projectile                  |
 | theme | solarized-theme | A very pleasing theme, gently to the stressed eye |
 | lang  | haskell-mode    | Working effectively with Haskell                  |
+| lang  | markdown-mode   | Needed for writing markdown                       |
 
 #+begin_src emacs-lisp :var package-entries=packages
 (defun jakob-get-package-name (package-entry)
@@ -345,4 +346,18 @@ activated auto-indentation:
     (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
 (eval-after-load 'haskell-mode
   #'jakob/haskell-basic-configuration)
+#+end_src
+
+* Markdown Settings
+
+Markdown is used to write exportable texts (e.g. HTML or PDF)
+
+#+name: Configure markdown mode
+#+begin_src emacs-lisp
+(after "markdown-mode-autoloads"
+  (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+
+(add-hook 'markdown-mode-hook 'turn-on-auto-fill)
 #+end_src
