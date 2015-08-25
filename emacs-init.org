@@ -255,6 +255,19 @@ to every text related buffer
 (add-hook 'text-mode-hook #'dubcaps-mode)
 #+end_src
 
+** Show Aiding Symbols
+
+To simplify working
+with text files and/or source code
+whitespace characters and lines longer the 80 chars
+should be made visible:
+
+#+name: Enable whitespace mode for all buffers
+#+begin_src emacs-lisp
+(require 'whitespace)
+(add-hook 'text-mode-hook #'whitespace-mode)
+#+end_src
+
 * Helm Settings
 
 Helm is a very powerful and versatile environment
