@@ -1,4 +1,6 @@
 emacs-init.el
 *~
 elpa/*
+tramp
+.org-id-locations
 
