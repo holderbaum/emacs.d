@@ -192,7 +192,7 @@ should be used:
 #+begin_src emacs-lisp
 ;; Load theme if installed
 (after "darcula-theme-autoloads"
-  (load-theme 'darcula t))
+  (load-theme 'solarized-light t))
 #+end_src
 
 * Org Mode Settings
