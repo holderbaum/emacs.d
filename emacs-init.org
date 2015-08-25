@@ -74,6 +74,7 @@ by this configuration on emacs boot:
 | util  | helm            | Exceptional completion system                     |
 | util  | helm-projectile | helm integration with projectile                  |
 | theme | solarized-theme | A very pleasing theme, gently to the stressed eye |
+| lang  | haskell-mode    | Working effectively with Haskell                  |
 
 #+begin_src emacs-lisp :var package-entries=packages
 (defun jakob-get-package-name (package-entry)
@@ -331,4 +332,17 @@ Finally, enable the flyspell mode
 #+begin_src emacs-lisp
 (add-hook 'text-mode-hook
           (lambda () (flyspell-mode 1)))
+#+end_src
+
+* Haskell Settings
+
+The Haskell mode should have
+activated auto-indentation:
+
+#+name: Configure Haskell mode
+#+begin_src emacs-lisp
+(defun jakob/haskell-basic-configuration ()
+    (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
+(eval-after-load 'haskell-mode
+  #'jakob/haskell-basic-configuration)
 #+end_src
