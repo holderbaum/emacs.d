@@ -361,3 +361,5 @@ Markdown is used to write exportable texts (e.g. HTML or PDF)
 
 (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
 #+end_src
+
+#  LocalWords:  DOuble CApitalization
