@@ -274,7 +274,7 @@ should be made visible:
 Helm is a very powerful and versatile environment
 which enables nice completions everywhere.
 
-#+name: test
+#+name: Enable Helm globally
 #+begin_src emacs-lisp
 (after "helm-projectile-autoloads"
   (global-set-key (kbd "C-x SPC") 'helm-projectile))
@@ -282,7 +282,7 @@ which enables nice completions everywhere.
 
 * Magit Settings
 
-#+name: test
+#+name: Configure magit status binding
 #+begin_src emacs-lisp
 (after "magit-autoloads"
   (global-set-key (kbd "C-x g") 'magit-status))
