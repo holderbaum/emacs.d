@@ -285,3 +285,50 @@ which enables nice completions everywhere.
 (after "magit-autoloads"
   (global-set-key (kbd "C-x g") 'magit-status))
 #+end_src
+
+* Spell Check Settings
+
+Spell checking will be done by the tool aspell.
+
+#+name: Set aspell to be the default spelling tool
+#+begin_src emacs-lisp
+(setq ispell-program-name "aspell"
+      ispell-extra-args '("--sug-mode=ultra"
+                          "--run-together"
+                          "--run-together-limit=5"
+                          "--run-together-min=2"))
+#+end_src
+
+Because I am frequently writing in German and in English
+I want a convenient function to efficiently switch between the both:
+
+#+begin_src emacs-lisp
+(let ((langs '("english" "german8")))
+  (setq lang-ring (make-ring (length langs)))
+  (dolist (elem langs) (ring-insert lang-ring elem)))
+
+(defun jakob/cycle-ispell-languages ()
+  (interactive)
+  (let ((lang (ring-ref lang-ring -1)))
+    (ring-insert lang-ring lang)
+    (ispell-change-dictionary lang)))
+#+end_src
+
+In addition I do want some convenient mappings for spell correction:
+
+#+name: Set spell correction bindings and enable spell check for texts
+#+begin_src emacs-lisp
+(defun jakob/spell-key-bindings ()
+  (global-set-key [f6] 'jakob-cycle-ispell-languages)
+  (global-set-key [f7] 'ispell-buffer))
+(eval-after-load 'flyspell
+  #'jakob/spell-key-bindings)
+#+end_src
+
+Finally, enable the flyspell mode
+
+#+name: Enable spell checking for all text files
+#+begin_src emacs-lisp
+(add-hook 'text-mode-hook
+          (lambda () (flyspell-mode 1)))
+#+end_src
