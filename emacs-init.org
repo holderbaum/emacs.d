@@ -29,7 +29,7 @@ to your =~/.emacs.d/init.el= file:
 
 Emacs stores some custom settings
 by default in the init file.
-We wan't to change this
+We want to change this
 so that the custom settings
 are stored inside this file
 
@@ -161,7 +161,7 @@ And since the editor
 is focused on keyboard shortcuts
 a sophisticated GUI interface is not needed:
 
-#+name: Disable most of the gui elements
+#+name: Disable most of the GULi elements
 #+begin_src emacs-lisp
 ;; Turn off mouse interface early in startup to avoid momentary display
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -187,7 +187,7 @@ In addition to this
 the following default theme
 should be used:
 
-#+name: Load favourite theme
+#+name: Load favorite theme
 #+begin_src emacs-lisp
 ;; Load theme if installed
 (after "darcula-theme-autoloads"
@@ -221,7 +221,7 @@ Code segment is inspired
 by this
 [[http://endlessparentheses.com/fixing-double-capitals-as-you-type.html][blog post]].
 
-#+name: Function and a minor morde to enable double capitalization errors
+#+name: Function and a minor mode to enable double capitalization errors
 #+begin_src emacs-lisp
 (defun dcaps-to-scaps ()
   "Convert word in DOuble CApitals to Single Capitals."
@@ -246,7 +246,7 @@ by this
 
 The mode shall be enabled
 for text mode
-so that it is availabe
+so that it is available
 to every text related buffer
 
 #+name: Enable double capitalization mode
