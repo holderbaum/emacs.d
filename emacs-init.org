@@ -39,6 +39,19 @@ are stored inside this file
 (load custom-file)
 #+end_src
 
+* Generic Settings
+
+There are some general setting to emacs
+that will be placed under this topic.
+
+#+name: Don't create backup (annoying.txt~) nor auto-save (#annoying.txt#)
+#+begin_src emacs-lisp
+;disable backup
+(setq backup-inhibited t)
+;disable auto save
+(setq auto-save-default nil)
+#+end_src
+
 * Required Packages
 
 The packages of this installation
