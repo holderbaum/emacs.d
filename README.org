@@ -7,7 +7,7 @@
 
 This is my first attempt for actual
 [[https://en.wikipedia.org/wiki/Literate_programming][Literate Programming]].
-The following org file (=~/.emacs.d/emacs-init.org=)
+The following org file (=~/.emacs.d/README.org=)
 contains all the necessary configuration elisp code
 to setup Emacs to my convenience.
 
@@ -22,7 +22,7 @@ to your =~/.emacs.d/init.el= file:
 (require 'ob-tangle)
 
 ;; Load the custom configuration file
-(org-babel-load-file "emacs-init.org")
+(org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
 #+end_src
 
 * Custom File
