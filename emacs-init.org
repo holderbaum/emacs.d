@@ -80,15 +80,16 @@ that will be automatically installed
 by this configuration on emacs boot:
 
 #+name: packages
-| Type  | Package         | Description                                       |
-|-------+-----------------+---------------------------------------------------|
-| util  | magit           | Exceptional git integration                       |
-| util  | undo-tree       | Better undo visualization and handling            |
-| util  | helm            | Exceptional completion system                     |
-| util  | helm-projectile | helm integration with projectile                  |
-| theme | solarized-theme | A very pleasing theme, gently to the stressed eye |
-| lang  | haskell-mode    | Working effectively with Haskell                  |
-| lang  | markdown-mode   | Needed for writing markdown                       |
+| Type  | Package               | Description                            |
+|-------+-----------------------+----------------------------------------|
+| util  | magit                 | Exceptional git integration            |
+| util  | undo-tree             | Better undo visualization and handling |
+| util  | helm                  | Exceptional completion system          |
+| util  | helm-projectile       | helm integration with projectile       |
+| util  | highlight-parentheses | Highlights lisp parantheses            |
+| theme | solarized-theme       | A very pleasing theme                  |
+| lang  | haskell-mode          | Working effectively with Haskell       |
+| lang  | markdown-mode         | Needed for writing markdown            |
 
 #+begin_src emacs-lisp :var package-entries=packages
 (defun jakob/get-package-name (package-entry)
@@ -329,6 +330,15 @@ activated auto-indentation:
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
 
 (eval-after-load 'haskell-mode #'jakob/haskell-basic-configuration)
+#+end_src
+
+* Emacs Lisp Settings
+
+We want to highlight parantheses in elisp:
+
+#+name: Enable parantheses highlighting for emacs lisp
+#+begin_src emacs-lisp
+(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
 #+end_src
 
 * Markdown Settings
