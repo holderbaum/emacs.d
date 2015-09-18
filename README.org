@@ -6,24 +6,20 @@
 * Emacs Configuration
 
 This is my first attempt for actual
-[[https://en.wikipedia.org/wiki/Literate_programming][Literate Programming]].
+[[http://jakob.io/literate.html][Literate Programming]].
 The following org file (=~/.emacs.d/README.org=)
 contains all the necessary configuration elisp code
 to setup Emacs to my convenience.
 
-To actually load it,
-add the following lines
-to your =~/.emacs.d/init.el= file:
+To install it, check this repository out like this:
 
-#+name: init.el content to load the literate configuration
-#+begin_src emacs-lisp :tangle no
-;; Require org mode
-(require 'org-install)
-(require 'ob-tangle)
-
-;; Load the custom configuration file
-(org-babel-load-file (expand-file-name "README.org" user-emacs-directory))
+#+name: How to get emacs running
+#+begin_src bash :tangle no
+git clone git@github.com:holderbaum/emacs.d.git ~/.emacs.d
 #+end_src
+
+The =init.el= file will tangle and load this README
+and use the tangled result as config file.
 
 * Custom File
 
