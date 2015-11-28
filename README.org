@@ -48,6 +48,20 @@ that will be placed under this topic.
 (setq auto-save-default nil)
 #+end_src
 
+* Useful Extensions
+
+I mostly switch between unit test and implementation.
+The following shortcut aids this workflow.
+
+#+name: Switch to the lastly active window
+#+begin_src emacs-lisp
+ (defun prev-window ()
+   (interactive)
+   (other-window -1))
+
+ (define-key global-map (kbd "C-x p") 'prev-window)
+#+end_src
+
 * Required Packages
 
 The packages of this installation
@@ -83,9 +97,19 @@ by this configuration on emacs boot:
 | util  | helm                  | Exceptional completion system          |
 | util  | helm-projectile       | helm integration with projectile       |
 | util  | highlight-parentheses | Highlights lisp parantheses            |
+| util  | flycheck              |                                        |
+| util  | rubocop               |                                        |
+| util  | rvm                   |                                        |
+| util  | robe                  |                                        |
+| util  | company               |                                        |
+| util  | smartparens           |                                        |
 | theme | solarized-theme       | A very pleasing theme                  |
 | lang  | haskell-mode          | Working effectively with Haskell       |
 | lang  | markdown-mode         | Needed for writing markdown            |
+| lang  | feature-mode          | Needed for writing cucumber stories    |
+| lang  | enh-ruby-mode         |                                        |
+| lang  | inf-ruby              |                                        |
+| lang  | haml-mode             | HAML, a HTML preprocessor              |
 
 #+begin_src emacs-lisp :var package-entries=packages
 (defun jakob/get-package-name (package-entry)
@@ -224,9 +248,13 @@ should be made visible:
 #+name: Enable whitespace mode for all buffers
 #+begin_src emacs-lisp
 (require 'whitespace)
-(add-hook 'text-mode-hook
-          #'whitespace-mode)
+
+(global-whitespace-mode)
+
+(add-hook 'before-save-hook
+          'delete-trailing-whitespace)
 #+end_src
+
 
 * Helm Settings
 
@@ -335,6 +363,99 @@ We want to highlight parantheses in elisp:
 #+name: Enable parantheses highlighting for emacs lisp
 #+begin_src emacs-lisp
 (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+#+end_src
+
+* Ruby Settings
+
+#+begin_src emacs-lisp
+(autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+
+(require 'compile)
+
+(setq compilation-scroll-output 'first-error)
+;;(setq compilation-auto-jump-to-first-error t)
+
+(global-set-key [(control c) (C)] 'compile)
+(global-set-key [(control c) (c)] 'compile-again)
+(setq compilation-last-buffer nil)
+(setq compilation-read-command nil)
+(defun compile-again (pfx)
+  """Run the same compile as the last time.
+If there was no last time, or there is a prefix argument, this acts like
+M-x compile.
+"""
+ (interactive "p")
+ (if (and (eq pfx 1)
+  compilation-last-buffer)
+     (progn
+       (save-buffer)
+       (set-buffer compilation-last-buffer)
+       (revert-buffer t t))
+   (call-interactively 'compile)))
+
+(add-hook 'enh-ruby-mode-hook 'rubocop-mode)
+(add-hook 'enh-ruby-mode-hook 'flycheck-mode)
+(add-hook 'enh-ruby-mode-hook 'whitespace-mode)
+(add-hook 'enh-ruby-mode-hook 'robe-mode)
+;;(add-hook 'enh-ruby-mode-hook (lambda () (interactive) (fci-mode)))
+
+
+(require 'smartparens-config)
+(smartparens-global-mode)
+(show-smartparens-global-mode t)
+
+(require 'smartparens-ruby)
+
+
+(require 'company)
+(add-hook 'enh-ruby-mode-hook 'global-company-mode)
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-inf-ruby))
+
+(push 'company-robe company-backends)
+
+(add-hook 'enh-ruby-mode-hook
+          (lambda ()
+            (rvm-activate-corresponding-ruby)
+
+            (set (make-local-variable 'compile-command)
+                 (concat "bundle exec ruby -Ilib:test:spec:test/support:spec/support:test/unit/support:test/integration/support " buffer-file-name))
+
+            (setq-default compilation-error-regexp-alist
+                          '(
+                            ("\\[\\(.*\\):\\([0-9]+\\)\\]:$" 1 2)
+                            ("^ *\\([[+]\\)?\\([^:]+\\):\\([0-9]+\\):in" 2 3)
+                            ("^.* at \\([^:]*\\):\\([0-9]+\\)$" 1 2)))
+
+            (set-ruby-default-directory)))
+
+
+(defun set-ruby-default-directory ()
+  (setq default-directory
+        (file-name-directory
+         (get-nearest-file '("Rakefile" "Gemfile")))))
+
+(defun get-nearest-file (compilation-filenames)
+  "Search for the compilation file traversing up the directory tree."
+  (let ((dir default-directory)
+        (parent-dir (file-name-directory (directory-file-name default-directory)))
+        (nearest-compilation-file 'nil))
+    (while (and (not (string= dir parent-dir))
+                (not nearest-compilation-file))
+      (dolist (filename compilation-filenames)
+        (setq file-path (concat dir filename))
+        (when (file-readable-p file-path)
+          (setq nearest-compilation-file file-path)))
+      (setq dir parent-dir
+            parent-dir (file-name-directory (directory-file-name parent-dir))))
+    nearest-compilation-file))
 #+end_src
 
 * Markdown Settings
