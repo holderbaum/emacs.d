@@ -110,7 +110,6 @@ by this configuration on emacs boot:
 | util  | rubocop               |                                        |
 | util  | rvm                   |                                        |
 | util  | robe                  |                                        |
-| util  | company               |                                        |
 | util  | smartparens           |                                        |
 | theme | solarized-theme       | A very pleasing theme                  |
 | lang  | haskell-mode          | Working effectively with Haskell       |
@@ -420,15 +419,6 @@ M-x compile.
 (show-smartparens-global-mode t)
 
 (require 'smartparens-ruby)
-
-
-(require 'company)
-(add-hook 'enh-ruby-mode-hook 'global-company-mode)
-
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-inf-ruby))
-
-(push 'company-robe company-backends)
 
 (add-hook 'enh-ruby-mode-hook
           (lambda ()
