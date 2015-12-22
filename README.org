@@ -163,7 +163,7 @@ for longer coding sessions:
 #+begin_src emacs-lisp
 ;; Set default font
 (set-default-font "DejaVu Sans Mono")
-(set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 140)
 #+end_src
 
 In addition to this
