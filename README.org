@@ -174,7 +174,7 @@ should be used:
 #+begin_src emacs-lisp
 ;; Load theme if installed
 (require 'solarized-theme)
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 #+end_src
 
 * Org Mode Settings
