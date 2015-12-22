@@ -62,6 +62,15 @@ The following shortcut aids this workflow.
  (define-key global-map (kbd "C-x p") 'prev-window)
 #+end_src
 
+Jumping to highlighted syntax/spelling errors
+should be brain dead simple:
+
+#+name: Switch to the next/previous error
+#+begin_src emacs-lisp
+ (define-key global-map (kbd "C-x n") 'next-error)
+ (define-key global-map (kbd "C-x N") 'previous-error)
+#+end_src
+
 * Required Packages
 
 The packages of this installation
