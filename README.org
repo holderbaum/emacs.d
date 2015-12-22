@@ -411,7 +411,6 @@ M-x compile.
 (add-hook 'enh-ruby-mode-hook 'flycheck-mode)
 (add-hook 'enh-ruby-mode-hook 'whitespace-mode)
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
-;;(add-hook 'enh-ruby-mode-hook (lambda () (interactive) (fci-mode)))
 (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
 
 (eval-after-load 'inf-ruby
