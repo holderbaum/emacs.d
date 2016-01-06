@@ -375,52 +375,44 @@ We want to highlight parantheses in elisp:
 
 * Ruby Settings
 
+I use the Enhanced Ruby Mode
+instead of the regular one:
+
+#+name: Configure Enhanced Ruby Mode mode
 #+begin_src emacs-lisp
-(autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
-(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+(defun jakob/enh-ruby-basic-configuration ()
+  (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Rakefile$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.gemspec$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.ru$" . enh-ruby-mode))
+  (add-to-list 'auto-mode-alist '("Gemfile$" . enh-ruby-mode))
+  (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
+  (add-hook 'enh-ruby-mode-hook 'flycheck-mode)
+  (add-hook 'enh-ruby-mode-hook 'whitespace-mode)
+  (add-hook 'enh-ruby-mode-hook 'robe-mode)
+  (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode))
 
-(require 'compile)
+(eval-after-load 'enh-ruby-mode #'jakob/enh-ruby-basic-configuration)
 
-(setq compilation-scroll-output 'first-error)
-;;(setq compilation-auto-jump-to-first-error t)
+(require 'enh-ruby-mode)
+#+end_src
 
-(global-set-key [(control c) (C)] 'compile)
-(global-set-key [(control c) (c)] 'compile-again)
-(setq compilation-last-buffer nil)
-(setq compilation-read-command nil)
-(defun compile-again (pfx)
-  """Run the same compile as the last time.
-If there was no last time, or there is a prefix argument, this acts like
-M-x compile.
-"""
- (interactive "p")
- (if (and (eq pfx 1)
-  compilation-last-buffer)
-     (progn
-       (save-buffer)
-       (set-buffer compilation-last-buffer)
-       (revert-buffer t t))
-   (call-interactively 'compile)))
+The Inferior Ruby package allows simpler REPL interaction:
 
-(add-hook 'enh-ruby-mode-hook 'rubocop-mode)
-(add-hook 'enh-ruby-mode-hook 'flycheck-mode)
-(add-hook 'enh-ruby-mode-hook 'whitespace-mode)
-(add-hook 'enh-ruby-mode-hook 'robe-mode)
-(add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+#+name: Configure Inferior Ruby mode
+#+begin_src emacs-lisp
+(defun jakob/inf-ruby-basic-configuration ()
+    '(define-key inf-ruby-minor-mode-map
+       (kbd "C-c C-s") 'inf-ruby-console-auto))
 
-(eval-after-load 'inf-ruby
-  '(define-key inf-ruby-minor-mode-map
-     (kbd "C-c C-s") 'inf-ruby-console-auto))
+(eval-after-load 'inf-ruby #'jakob/inf-ruby-basic-configuration)
+#+end_src
 
-(require 'smartparens-config)
-(smartparens-global-mode)
-(show-smartparens-global-mode t)
 
+--------------------
+#+name: Configure Ruby Mode
+#+begin_src emacs-lisp
 (require 'smartparens-ruby)
 
 (add-hook 'enh-ruby-mode-hook
@@ -458,6 +450,37 @@ M-x compile.
       (setq dir parent-dir
             parent-dir (file-name-directory (directory-file-name parent-dir))))
     nearest-compilation-file))
+
+#+end_src
+--------------------
+
+
+#+begin_src emacs-lisp
+(require 'compile)
+
+(setq compilation-scroll-output 'first-error)
+
+(global-set-key [(control c) (C)] 'compile)
+(global-set-key [(control c) (c)] 'compile-again)
+(setq compilation-last-buffer nil)
+(setq compilation-read-command nil)
+(defun compile-again (pfx)
+  """Run the same compile as the last time.
+If there was no last time, or there is a prefix argument, this acts like
+M-x compile.
+"""
+ (interactive "p")
+ (if (and (eq pfx 1)
+  compilation-last-buffer)
+     (progn
+       (save-buffer)
+       (set-buffer compilation-last-buffer)
+       (revert-buffer t t))
+   (call-interactively 'compile)))
+
+(require 'smartparens-config)
+(smartparens-global-mode)
+(show-smartparens-global-mode t)
 #+end_src
 
 * Markdown Settings
